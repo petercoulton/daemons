@@ -29,7 +29,7 @@ public class DaemonService {
     ObjectMapper mapper;
 
     @Incoming("jobs")
-    @Blocking
+    @Blocking("daemon-pool")
     public CompletionStage<Void> onMessage(Message<String> message) {
         final String json = message.getPayload();
 
