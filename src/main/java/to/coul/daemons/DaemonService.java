@@ -19,12 +19,9 @@ import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
 
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.Semaphore;
 
 @ApplicationScoped
 public class DaemonService {
-    private final Semaphore permits = new Semaphore(5);
-
     @Inject @Any
     Instance<DaemonWorker<?>> workers;
 
@@ -34,46 +31,39 @@ public class DaemonService {
     @Incoming("jobs")
     @Blocking
     public CompletionStage<Void> onMessage(Message<String> message) {
+        final String json = message.getPayload();
+
+        final DaemonTask task;
         try {
-            permits.acquire();
+            task = mapper.readValue(json, DaemonTask.class);
+        } catch (JsonProcessingException e) {
+            return message.nack(new IllegalArgumentException("Failed to deserialize task", e));
+        }
 
-            final String json = message.getPayload();
+        final var handle =
+            this.workers.select(new ForTaskLiteral(task.getClass()));
+        if (handle.isUnsatisfied()) {
+            return message.nack(new IllegalStateException("No worker for task type " + task.getClass().getName()));
+        }
 
-            final DaemonTask task;
-            try {
-                task = mapper.readValue(json, DaemonTask.class);
-            } catch (JsonProcessingException e) {
-                return message.nack(new IllegalArgumentException("Failed to deserialize task", e));
-            }
+        DaemonWorker<DaemonTask> worker = null;
+        try {
+            //noinspection unchecked
+            worker = (DaemonWorker<DaemonTask>) handle.get();
 
-            final var handle =
-                this.workers.select(new ForTaskLiteral(task.getClass()));
-            if (handle.isUnsatisfied()) {
-                return message.nack(new IllegalStateException("No worker for task type " + task.getClass().getName()));
-            }
+            worker.process(task);
 
-            DaemonWorker<DaemonTask> worker = null;
-            try {
-                //noinspection unchecked
-                worker = (DaemonWorker<DaemonTask>) handle.get();
-
-                worker.process(task);
-
-                return message.ack();
-            } catch (Exception e) {
-                return message.nack(e);
-            } finally {
-                if (worker != null) {
-                    try {
-                        handle.destroy(worker);
-                    } catch (Exception ignore) {
-                        /* noop */
-                    }
+            return message.ack();
+        } catch (Exception e) {
+            return message.nack(e);
+        } finally {
+            if (worker != null) {
+                try {
+                    handle.destroy(worker);
+                } catch (Exception ignore) {
+                    /* noop */
                 }
-                permits.release();
             }
-        } catch (InterruptedException e) {
-            return message.nack(new IllegalStateException("No worker available to process task", e));
         }
     }
 

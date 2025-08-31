@@ -22,7 +22,7 @@ Create a new aws cli profile for interacting with localstack:
 $ aws configure --profile localstack
 AWS Access Key ID [None]: test-key
 AWS Secret Access Key [None]: test-secret
-Default region name [None]: us-east-1
+Default region name [None]: eu-west-1
 Default output format [None]: text
 ```
 
@@ -38,11 +38,11 @@ $ aws sqs create-queue \
 Once the app is running, you can send new sqs message using the aws cli:
 
 ```bash
-$ aws --region us-east-1 \
-  --endpoint-url http://sqs.us-east-1.localhost:4566 \
+$ aws --region eu-west-1 \
+  --endpoint-url http://sqs.eu-west-1.localhost:4566 \
   --profile localstack \
   sqs send-message \
-  --queue-url "http://sqs.us-east-1.localhost:4566/000000000000/jobs" \
+  --queue-url "http://sqs.eu-west-1.localhost:4566/000000000000/jobs" \
   --message-body '{"type":"indexAsset","id":["ab952526-3d84-4190-b647-b31a8a64ad50"]}'
 ```
 
