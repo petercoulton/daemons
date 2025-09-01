@@ -1,5 +1,6 @@
 package to.coul.daemons.tasks;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -13,4 +14,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = FTPImportTask.class, name = "importFTP")
 })
 public sealed interface DaemonTask permits IndexAssetTask, FTPImportTask {
+    @JsonIgnore
+    default boolean ackImmediately() {
+        return false;
+    }
 }

@@ -19,8 +19,11 @@ public class TaskInvokerDefault implements TaskInvoker {
     public CompletionStage<Void> invoke(final DaemonTask task) {
         return CompletableFuture.runAsync(() -> {
             this.registry.withWorker(task, worker -> {
+                Log.info("Task started: " + task.getClass().getSimpleName());
+
                 worker.process(task);
-                Log.info("Task completed: " + task.getClass().getName());
+
+                Log.info("Task completed: " + task.getClass().getSimpleName());
             });
         });
     }
