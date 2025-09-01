@@ -1,8 +1,7 @@
 package to.coul.daemons.workers;
 
-import static to.coul.daemons.workers.FTPImportWorker.*;
-
 import to.coul.daemons.annotations.ForTask;
+import to.coul.daemons.tasks.FTPImportTask;
 
 import io.quarkus.logging.Log;
 import jakarta.enterprise.context.Dependent;
@@ -16,6 +15,8 @@ public class FTPImportWorker extends DaemonWorker<FTPImportTask> {
         Log.info("Processing ftp import task");
     }
 
-    public record FTPImportTask() implements DaemonTask {}
-
+    @Override
+    public Class<FTPImportTask> getTaskType() {
+        return FTPImportTask.class;
+    }
 }

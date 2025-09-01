@@ -1,9 +1,10 @@
 package to.coul.daemons.annotations;
 
-import to.coul.daemons.workers.DaemonTask;
+import to.coul.daemons.tasks.DaemonTask;
 
 import jakarta.enterprise.util.AnnotationLiteral;
 
+@SuppressWarnings("ClassExplicitlyAnnotation")
 public class ForTaskLiteral extends AnnotationLiteral<ForTask> implements ForTask {
 
     private final Class<? extends DaemonTask> value;

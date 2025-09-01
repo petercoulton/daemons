@@ -1,6 +1,6 @@
 package to.coul.daemons.annotations;
 
-import to.coul.daemons.workers.DaemonTask;
+import to.coul.daemons.tasks.DaemonTask;
 
 import jakarta.inject.Qualifier;
 

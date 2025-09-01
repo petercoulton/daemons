@@ -46,6 +46,14 @@ $ aws --region eu-west-1 \
   --message-body '{"type":"indexAsset","id":["ab952526-3d84-4190-b647-b31a8a64ad50"]}'
 ```
 
+```bash
+$ aws --region eu-west-1 \
+  --endpoint-url http://sqs.eu-west-1.localhost:4566 \
+  --profile localstack \
+  sqs send-message \
+  --queue-url "http://sqs.eu-west-1.localhost:4566/000000000000/jobs" \
+  --message-body '{"type":"importFTP"}'
+  ```
 
 ## Quarkus
 

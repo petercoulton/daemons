@@ -1,7 +1,4 @@
-package to.coul.daemons.workers;
-
-import static to.coul.daemons.workers.FTPImportWorker.*;
-import static to.coul.daemons.workers.IndexAssetWorker.*;
+package to.coul.daemons.tasks;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

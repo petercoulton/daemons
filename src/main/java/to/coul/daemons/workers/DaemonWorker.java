@@ -1,6 +1,9 @@
 package to.coul.daemons.workers;
 
 
-public abstract class DaemonWorker<Task extends DaemonTask> {
-    public abstract void process(Task task);
+import to.coul.daemons.tasks.DaemonTask;
+
+public abstract class DaemonWorker<T extends DaemonTask> {
+    public abstract Class<T> getTaskType();
+    public abstract void process(T task);
 }
