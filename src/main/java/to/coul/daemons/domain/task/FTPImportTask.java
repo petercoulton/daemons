@@ -1,4 +1,4 @@
-package to.coul.daemons.tasks;
+package to.coul.daemons.domain.task;
 
 public record FTPImportTask() implements DaemonTask {
     @Override

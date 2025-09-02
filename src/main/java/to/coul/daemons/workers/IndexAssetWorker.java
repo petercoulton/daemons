@@ -1,7 +1,8 @@
 package to.coul.daemons.workers;
 
-import to.coul.daemons.annotations.ForTask;
-import to.coul.daemons.tasks.IndexAssetTask;
+import to.coul.daemons.domain.task.IndexAssetTask;
+import to.coul.daemons.domain.worker.DaemonWorker;
+import to.coul.daemons.domain.worker.ForTask;
 
 import io.quarkus.logging.Log;
 import jakarta.enterprise.context.Dependent;

@@ -1,4 +1,4 @@
-package to.coul.daemons.tasks;
+package to.coul.daemons.application.messaging;
 
 public class ParsingException extends RuntimeException {
     public ParsingException(String message) {

@@ -53,7 +53,11 @@ $ aws --region eu-west-1 \
   sqs send-message \
   --queue-url "http://sqs.eu-west-1.localhost:4566/000000000000/jobs" \
   --message-body '{"type":"importFTP"}'
-  ```
+```
+
+## REST Endpoints
+
+See [taskdaemon-http-requests](./taskdaemon-http-requests.http)
 
 ## Quarkus
 

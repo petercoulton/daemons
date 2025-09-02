@@ -1,4 +1,4 @@
-package to.coul.daemons.tasks;
+package to.coul.daemons.domain.task;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

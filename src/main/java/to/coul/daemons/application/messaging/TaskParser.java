@@ -1,5 +1,6 @@
-package to.coul.daemons.tasks;
+package to.coul.daemons.application.messaging;
 
+import to.coul.daemons.domain.task.DaemonTask;
 import to.coul.daemons.util.Either;
 
 public interface TaskParser {

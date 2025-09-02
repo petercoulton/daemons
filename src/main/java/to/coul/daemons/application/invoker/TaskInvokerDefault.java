@@ -1,6 +1,7 @@
-package to.coul.daemons.tasks;
+package to.coul.daemons.application.invoker;
 
-import to.coul.daemons.workers.WorkerRegistry;
+import to.coul.daemons.domain.task.DaemonTask;
+import to.coul.daemons.application.messaging.WorkerRegistry;
 
 import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;

@@ -1,4 +1,6 @@
-package to.coul.daemons.tasks;
+package to.coul.daemons.application.invoker;
+
+import to.coul.daemons.domain.task.DaemonTask;
 
 import java.util.concurrent.CompletionStage;
 

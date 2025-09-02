@@ -1,0 +1,5 @@
+### List tasks
+GET localhost:8080/tasks
+Content-Type: */*
+
+###

@@ -1,6 +1,7 @@
-package to.coul.daemons.workers;
+package to.coul.daemons.application.messaging;
 
-import to.coul.daemons.tasks.DaemonTask;
+import to.coul.daemons.domain.worker.DaemonWorker;
+import to.coul.daemons.domain.task.DaemonTask;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;

@@ -1,8 +1,7 @@
-package to.coul.daemons;
+package to.coul.daemons.application.messaging;
 
-import to.coul.daemons.tasks.DaemonTask;
-import to.coul.daemons.tasks.TaskInvoker;
-import to.coul.daemons.tasks.TaskParser;
+import to.coul.daemons.domain.task.DaemonTask;
+import to.coul.daemons.application.invoker.TaskInvoker;
 
 import io.quarkus.logging.Log;
 import io.smallrye.reactive.messaging.annotations.Blocking;
