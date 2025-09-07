@@ -1,4 +1,4 @@
-package to.coul.daemons.domain.worker;
+package to.coul.daemons.domain.task.annotations;
 
 import to.coul.daemons.domain.task.DaemonTask;
 

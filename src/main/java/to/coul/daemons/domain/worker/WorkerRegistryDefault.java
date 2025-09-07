@@ -1,8 +1,7 @@
-package to.coul.daemons.application.messaging;
+package to.coul.daemons.domain.worker;
 
-import to.coul.daemons.domain.worker.DaemonWorker;
-import to.coul.daemons.domain.worker.ForTaskLiteral;
 import to.coul.daemons.domain.task.DaemonTask;
+import to.coul.daemons.domain.task.annotations.ForTaskLiteral;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Any;
